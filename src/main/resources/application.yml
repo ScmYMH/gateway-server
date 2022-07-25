@@ -6,7 +6,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761//eureka
+      defaultZone: http://localhost:8761/eureka
 
 spring:
   application:
@@ -21,7 +21,7 @@ spring:
               - POST
               - DELETE
               - PUT
-              - OPTION
+              - OPTIONS
             allowedOrigins:
               - "http://localhost:3000"
             allowedHeaders: "*"
@@ -41,6 +41,7 @@ spring:
 
 management:
   endpoints:
+    enabled: true
     web:
       exposure:
-        include: refresh, health, beans, httpstrace
+        include: gateway, routes, refresh, health, beans, httpstrace
