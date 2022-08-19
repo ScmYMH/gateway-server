@@ -1,20 +1,13 @@
 server:
   port: 8000
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
 spring:
   application:
     name: gateway-service
   cloud:
     gateway:
       globalcors:
-        cors-configurations:
+        corsConfigurations:
           '[/**]':
             allowedMethods:
               - GET
@@ -25,19 +18,33 @@ spring:
             allowedOrigins:
               - "http://localhost:3000"
             allowedHeaders: "*"
-      default-filters:
-        - name : GlobalFilter
-          args:
-            baseMessage: hello-world
-            preLogger: false
-            postLogger: true
       routes:
         - id: login-service
           uri: lb://LOGIN-SERVICE
           predicates:
-            - Path= /login/**
+            - Path= /user/**
           filters:
             - CustomFilter
+            - LoggingFilter
+        - id: contract-coa-service
+          uri: lb://CONTRACT-COA-SERVICE
+          predicates:
+            - Path= /coa/**
+          filters:
+            - CustomFilter
+        - id: contract-member-service
+          uri: lb://CONTRACT-COA-SERVICE
+          predicates:
+            - Path= /contract/**
+          filters:
+            - CustomFilter
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 
 management:
   endpoints:
