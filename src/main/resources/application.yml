@@ -9,15 +9,21 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allow-credentials: true   #추가
+            allowedHeaders:
+              - x-requested-with
+              - authorization
+              - content-type
+              - credential
+              - X-AUTH-TOKEN
+              - X-CSRF-TOKEN
             allowedMethods:
-              - GET
               - POST
-              - DELETE
+              - GET
               - PUT
               - OPTIONS
-            allowedOrigins:
-              - "http://localhost:3000"
-            allowedHeaders: "*"
+              - DELETE
       routes:
         - id: login-service
           uri: lb://LOGIN-SERVICE
@@ -44,7 +50,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://3.37.155.50:8761/eureka
 
 management:
   endpoints:
