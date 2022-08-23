@@ -9,8 +9,8 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "*"
-            allow-credentials: true   #추가
+            allowedOriginPatterns: "*"
+            allowCredentials: true   #추가
             allowedHeaders:
               - x-requested-with
               - authorization
