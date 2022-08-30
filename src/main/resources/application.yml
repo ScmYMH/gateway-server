@@ -6,6 +6,10 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -67,6 +71,6 @@ eureka:
 management:
   endpoints:
     enabled: true
-    web:
-      exposure:
-        include: gateway, routes, refresh, health, beans, httpstrace
+  web:
+    exposure:
+      include: gateway, routes, refresh, health, beans, httpstrace
