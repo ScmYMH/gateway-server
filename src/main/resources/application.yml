@@ -39,9 +39,21 @@ spring:
           filters:
             - CustomFilter
         - id: contract-member-service
-          uri: lb://CONTRACT-COA-SERVICE
+          uri: lb://CONTRACT-MEMBER-SERVICE
           predicates:
             - Path= /contract/**
+          filters:
+            - CustomFilter
+        - id: contract-tariff-service
+          uri: lb://CONTRACT-TARIFF-SERVICE
+          predicates:
+            - Path= /tariff/**
+          filters:
+            - CustomFilter
+        - id: excel-service
+          uri: lb://EXCEL-SERVICE
+          predicates:
+            - Path= /excel/**
           filters:
             - CustomFilter
 
