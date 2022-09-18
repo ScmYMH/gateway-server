@@ -60,6 +60,12 @@ spring:
             - Path= /excel/**
           filters:
             - CustomFilter
+        - id: calculate-service
+            uri: lb://CALCULATE-SERVICE
+            predicates:
+              - Path= /calculate/**
+            filters:
+              - CustomFilter
 
 eureka:
   client:
